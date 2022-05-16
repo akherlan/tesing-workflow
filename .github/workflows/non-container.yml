@@ -21,8 +21,10 @@ jobs:
         run: |
           pwd
           echo $SECRET_TEXT >> $SECRET_PATH
+          echo 'test save file' >> creation.txt
           ls -la
-          cat $SECRET_PATH
+          rm $SECRET_PATH
+          ls -l | grep txt
           echo 'check running docker'
           docker ps
           echo 'check image list'
