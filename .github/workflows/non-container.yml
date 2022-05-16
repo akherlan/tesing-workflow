@@ -22,13 +22,7 @@ jobs:
           pwd
           echo $SECRET_TEXT >> $SECRET_PATH
           echo 'test save file' >> creation.txt
-          ls -la
-          rm $SECRET_PATH
           ls -l | grep txt
-          echo 'check running docker'
-          docker ps
-          echo 'check image list'
-          docker images
         
       - name: Commit change
         uses: stefanzweifel/git-auto-commit-action@v4
