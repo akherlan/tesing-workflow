@@ -1,4 +1,4 @@
-name: Non-container
+name: with-container
 
 on:
   push:
@@ -8,6 +8,9 @@ on:
 jobs:
   test-container:
     runs-on: ubuntu-latest
+    services:
+      selenium:
+        image: selenium/standalone-chrome:latest
     env:
       SECRET_PATH: ${{ secrets.SECRET_PATH }}
       SECRET_TEXT: ${{ secrets.SECRET_TEXT }}
@@ -17,8 +20,7 @@ jobs:
         run: |
           pwd
           echo $SECRET_TEXT >> $SECRET_PATH
-          echo 'test save file' >> creation.txt
-          ls -l | grep txt
+          echo 'test save file' >> creation2.txt
         
       - name: Commit change
         uses: stefanzweifel/git-auto-commit-action@v4
