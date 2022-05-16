@@ -27,3 +27,6 @@ jobs:
           ls -la
           docker ps
           docker images
+        
+      - name: Commit change
+        uses: stefanzweifel/git-auto-commit-action@v4
