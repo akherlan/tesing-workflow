@@ -20,8 +20,10 @@ jobs:
       - name: Check directory
         run: pwd 
 
-      - name: Check creating file
+      - name: Checking
         run: |
           pwd
           echo $SECRET_TEXT >> $SECRET_PATH
           ls -la
+          docker ps
+          docker images
