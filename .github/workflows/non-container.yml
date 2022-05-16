@@ -1,4 +1,4 @@
-name: Container
+name: Non-container
 
 on:
   push:
@@ -22,7 +22,10 @@ jobs:
           pwd
           echo $SECRET_TEXT >> $SECRET_PATH
           ls -la
+          cat $SECRET_PATH
+          echo 'check running docker'
           docker ps
+          echo 'check image list'
           docker images
         
       - name: Commit change
