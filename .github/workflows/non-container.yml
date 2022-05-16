@@ -13,10 +13,6 @@ jobs:
       SECRET_TEXT: ${{ secrets.SECRET_TEXT }}
     steps:
       - uses: actions/checkout@v3
-
-      - name: Check directory
-        run: pwd 
-
       - name: Checking
         run: |
           pwd
