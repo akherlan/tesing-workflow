@@ -1,0 +1,29 @@
+name: Container
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test-container:
+    runs-on: ubuntu-latest
+    env:
+      SECRET_PATH: ${{ secrets.SECRET_PATH }}
+      SECRET_TEXT: ${{ secrets.SECRET_TEXT }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check directory
+        run: pwd 
+
+      - name: Checking
+        run: |
+          pwd
+          echo $SECRET_TEXT >> $SECRET_PATH
+          ls -la
+          docker ps
+          docker images
+        
+      - name: Commit change
+        uses: stefanzweifel/git-auto-commit-action@v4
