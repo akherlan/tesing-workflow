@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  TODAY: ${{ $(date +'%a, at %F %H:%M %Z') }}
+  TODAY: ${{ (date +'%a, at %F %H:%M %Z') }}
 jobs:
   test-container:
     runs-on: ubuntu-latest
