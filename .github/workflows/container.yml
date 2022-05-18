@@ -19,6 +19,4 @@ jobs:
       - name: Commit change
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "Update $TODAY"
-        env:
-          TODAY: ${{ date +'%a, at %F %H:%M %Z' }}
+          commit_message: "Update $(date +'%a, at %F %H:%M %Z')"
