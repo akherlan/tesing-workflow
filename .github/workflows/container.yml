@@ -1,4 +1,4 @@
-name: with-container
+name: test-job
 
 on:
   push:
@@ -18,5 +18,7 @@ jobs:
           echo 'test message' >> test_file.txt
       - name: Commit change
         uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Update $TODAY"
         env:
           TODAY: ${{ date +'%a, at %F %H:%M %Z' }}
