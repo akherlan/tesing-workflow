@@ -6,16 +6,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-container:
+  testing:
     runs-on: ubuntu-latest
     env:
       SECRET_PATH: ${{ secrets.SECRET_PATH }}
       SECRET_TEXT: ${{ secrets.SECRET_TEXT }}
     steps:
       - uses: actions/checkout@v3
-      - name: Bash command
+      - uses: r-lib/actions/setup-r@master
+      - name: Installing R packages
+        shell: Rscript {0}
         run: |
-          echo 'test message again later' >> test_file.txt
+          install.packages(c("dplyr", "tidyr", "readr", "clock"))
       - name: Today
         id: set_today
         run: |
