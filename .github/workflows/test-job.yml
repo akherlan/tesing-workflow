@@ -18,7 +18,7 @@ jobs:
       - name: Installing R packages
         shell: Rscript {0}
         run: |
-          install.packages(c("clock"))
+          install.packages(c("googlesheets4"))
           
       - name: Commit result
         shell: bash {0}
