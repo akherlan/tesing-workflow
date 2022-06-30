@@ -8,21 +8,23 @@ on:
 jobs:
   testing:
     runs-on: ubuntu-latest
-    env:
-      SECRET_PATH: ${{ secrets.SECRET_PATH }}
-      SECRET_TEXT: ${{ secrets.SECRET_TEXT }}
     steps:
       - uses: actions/checkout@v3
       - uses: r-lib/actions/setup-r@master
+      
+      - name: Install dependency
+        run: sudo apt-get install libcurl4-openssl-dev
+        
       - name: Installing R packages
         shell: Rscript {0}
         run: |
-          install.packages(c("dplyr", "tidyr", "readr", "clock"))
-      - name: Today
-        id: set_today
+          install.packages(c("clock"))
+          
+      - name: Commit result
+        shell: bash {0}
         run: |
-          echo "::set-output name=today::$(date +'%a, at %F %H:%M %Z')"
-      - name: Commit change
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "Update ${{ steps.set_today.outputs.today }}"
+          today=$(TZ='Asia/Jakarta' date +'%a, %F at %H:%M %Z')
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -am "Updated: $today" || exit 0
+          git push
