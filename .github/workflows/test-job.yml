@@ -18,7 +18,7 @@ jobs:
       - name: Installing R packages
         shell: Rscript {0}
         run: |
-          install.packages(c("tidyr"))
+          install.packages(c("readr"))
           
       - name: Commit result
         shell: bash {0}
