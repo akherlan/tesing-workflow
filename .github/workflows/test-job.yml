@@ -1,31 +1,17 @@
-name: test-job
+name: testing
 
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:
-  testing:
+  python-with-bash:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: r-lib/actions/setup-r@master
-      
-      - name: Install dependency
-        run: sudo apt-get update -y && sudo apt-get install -y libcurl4-openssl-dev
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.8'     
         
-      - name: Install packages
-        shell: Rscript {0}
-        run: |
-          install.packages("pak")
-          pak::pkg_install(c("dplyr", "tidyr", "googlesheets4", "clock"))
-          
-      - name: Commit result
+      - name: Run Script
         shell: bash {0}
-        run: |
-          today=$(TZ='Asia/Jakarta' date +'%a, %F at %H:%M %Z')
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git commit -am "Updated: $today" || exit 0
-          git push
+        run: runner.sh
