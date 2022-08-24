@@ -14,4 +14,6 @@ jobs:
         
       - name: Run Script
         shell: bash {0}
-        run: runner.sh
+        run: | 
+          chmod +x runner.sh
+          ./runner.sh
