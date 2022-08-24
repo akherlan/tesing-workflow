@@ -1,4 +1,0 @@
-test message
-test message again
-test message again
-test message again later
