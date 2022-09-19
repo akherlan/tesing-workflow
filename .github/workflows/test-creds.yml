@@ -1,0 +1,24 @@
+name: creds
+
+on:
+  workflow_dispatch:
+
+jobs:
+  python-with-bash:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.8'     
+        
+      - name: Run Script
+        env:
+          SECRET_TEXT: ${{ secrets.SECRET_TEXT }}
+          SECRET_PATH: ${{ secrets.SECRET_PATH }}
+        shell: bash {0}
+        run: | 
+          echo $SECRET_TEXT > $SECRET_PATH
+          echo $SECRET_TEXT > test-text.txt
+          ls -l
+          cat test-text.txt
