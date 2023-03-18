@@ -12,3 +12,6 @@ jobs:
           repository: 'akherlan/onlineshop'
           path: apps
           ref: main
+      - name: 'Check apps'
+        run: |
+          cd apps && ls -la
