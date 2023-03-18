@@ -14,4 +14,5 @@ jobs:
           ref: main
       - name: 'Check apps'
         run: |
-          cd apps && ls -la
+          pwd && ls -l
+          cd apps && ls -l
