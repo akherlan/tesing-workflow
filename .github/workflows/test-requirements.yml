@@ -16,7 +16,7 @@ jobs:
         shell: bash {0}
         run: | 
           python -m pip install --upgrade pip
-          pip install Scrapy pytz pandas fastparquet
+          pip install Scrapy pytz pandas fastparquet supabase
           pip freeze > requirements.txt
         
       - name: requirements.txt
